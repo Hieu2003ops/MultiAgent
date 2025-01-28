@@ -1,0 +1,47 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4a90e2;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.subheader {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    border: 2px solid #4a90e2 !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 1rem !important;
+}
+
+.output-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 30px;
+}
+
+.output {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e6f7ff;
+    border: 1px solid #b3e5fc;
+    border-radius: 10px;
+    text-align: center;
+}

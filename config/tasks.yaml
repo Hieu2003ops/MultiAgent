@@ -1,0 +1,56 @@
+research_task:
+  description: >
+    Conduct in-depth research on the latest advancements and applications of Generative AI in {topic}. 
+    Focus on identifying key trends, use cases, challenges, and real-world examples that highlight the impact of Generative AI.
+    Additionally, provide suggested questions or content outlines that can be used in blog writing.
+  expected_output: >
+    - title: A concise and descriptive title for the research.
+    - abstract: A brief summary of the research findings.
+    - introduction: An introduction to the topic, explaining its importance.
+    - methodology: A description of the research process.
+    - findings: Detailed findings, including key trends, use cases, and challenges.
+    - content_suggestions: Suggested angles or content outlines for writing the blog.
+    - conclusion: A summary of insights and potential future directions.
+    - references: A list of credible sources used in the research.
+
+writing_task:
+  description: >
+    Based on the research provided, write a detailed blog article about {topic}. 
+    Focus on explaining the concept, its significance, and its impact on the field. 
+    Use relatable analogies, examples, and real-world case studies to make the content engaging and accessible to a wide audience.
+  expected_output: >
+    - title: A compelling title for the blog post.
+    - introduction: An engaging introduction that hooks the reader.
+    - body: The main content of the blog, organized into sections.
+    - examples: A list of real-world examples or case studies discussed in the article.
+    - faqs: A list of frequently asked questions related to the topic.
+    - conclusion: A closing section summarizing the key takeaways.
+    - references: A list of sources cited in the blog.
+
+editing_task:
+  description: >
+    Review the draft blog article to ensure clarity, accuracy, and alignment with the intended audience. Check for grammatical 
+    errors, factual inaccuracies, and areas where the language can be refined. Enhance the narrative flow and ensure the use of 
+    relatable examples and storytelling techniques to engage the audience. Provide constructive feedback for the writer to improve future drafts.
+  expected_output: >
+    - title: A refined and engaging title for the blog post.
+    - introduction: A polished introduction that clearly sets the context.
+    - body: Improved main content with enhanced flow and clarity.
+    - examples: Verified and expanded real-world examples or case studies.
+    - feedback: Constructive feedback for the writer on how to improve future drafts.
+    - conclusion: A concise and impactful summary of the blog.
+    - references: Verified and properly formatted sources cited in the blog.
+
+quality_review_task:
+  description: >
+    Perform a final review of the polished blog article to ensure it meets quality standards, aligns with educational best practices, 
+    and effectively communicates its message to the target audience. Verify the accuracy of all references and data, check the readability, 
+    and ensure formatting follows markdown conventions for optimal presentation.
+  expected_output: >
+    - title: The finalized title of the blog post.
+    - introduction: A captivating and reader-friendly introduction.
+    - body: The finalized and thoroughly reviewed main content.
+    - examples: Ensured accuracy and relevance of all real-world examples or case studies.
+    - markdown: The complete blog post formatted in Markdown, including headers, bullet points, and hyperlinks.
+    - final_feedback: Notes or recommendations for the entire workflow to improve future iterations.
+    - references: Finalized list of accurate and properly formatted sources.
