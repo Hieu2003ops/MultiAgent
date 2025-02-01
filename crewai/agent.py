@@ -40,8 +40,8 @@ config_dir = os.path.join(base_dir, "../config")
 agent_config = load_yaml_config(config_dir, "agents.yaml")
 
 # Initialize LLMs
-llm = ChatOpenAI(model="gpt-3.5-turbo", api_key=open_ai_key)
-groq_llm = ChatGroq(model="deepseek-r1-distill-llama-70b", api_key=groq_api_key, temperature=0.7)
+llm = ChatOpenAI(model="gpt-4o-mini", api_key=open_ai_key)
+groq_llm = ChatGroq(model="groq/llama-3.1-70b-versatile", api_key=groq_api_key, temperature=0.7)
 
 # Create Agents
 agents = {
@@ -52,11 +52,11 @@ agents = {
     ),
     "blog_writer_agent": Agent(
         config=agent_config.get('blog_writer_agent', {}),
-        llm=groq_llm
+        llm=llm
     ),
     "content_editor_agent": Agent(
         config=agent_config.get('content_editor_agent', {}),
-        llm=groq_llm
+        llm=llm
     ),
     "quality_reviewer_agent": Agent(
         config=agent_config.get('quality_reviewer_agent', {}),

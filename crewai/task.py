@@ -5,6 +5,8 @@ import yaml
 import os
 from pydantic import BaseModel, Field
 from typing import List
+from output_schema import ContentOutput, SocialMediaPost
+
 
 # Load environment variables from .env file
 load_dotenv()
@@ -15,15 +17,6 @@ groq_api_key = os.getenv("GROQ_API_KEY")
 
 if not open_ai_key or not groq_api_key:
     raise EnvironmentError("Missing API keys in the .env file. Please check your configuration.")
-
-# Define structured output for the quality review task
-class SocialMediaPost(BaseModel):
-    platform: str = Field(..., description="The social media platform where the post will be published (e.g., Twitter, LinkedIn).")
-    content: str = Field(..., description="The content of the social media post, including any hashtags or mentions.")
-
-class ContentOutput(BaseModel):
-    article: str = Field(..., description="The article, formatted in markdown.")
-    social_media_posts: List[SocialMediaPost] = Field(..., description="A list of social media posts related to the article.")
 
 # Function to load YAML configuration
 def load_yaml_config(config_dir, file_name):
@@ -48,6 +41,9 @@ task_config = load_yaml_config(config_dir, "tasks.yaml")
 if not task_config:
     raise ValueError("Error: task_config is empty. Check tasks.yaml!")
 
+# Debug: In nội dung task_config
+print("Debugging task_config:", task_config)
+
 # Create tasks
 def create_tasks(task_config):
     """
@@ -60,29 +56,39 @@ def create_tasks(task_config):
         list: List of Crew AI tasks.
     """
     research_specialist_task = Task(
-        config=task_config['research_task'],
-        agent=agent.agents["research_specialist_agent"]  # Updated key name
+        config=task_config.get('research_task', None),
+        agent=agent.agents.get("research_specialist_agent", None)
     )
 
     writing_task = Task(
-        config=task_config['writing_task'],
-        agent=agent.agents["blog_writer_agent"]  # Updated key name
+        config=task_config.get('writing_task', None),
+        agent=agent.agents.get("blog_writer_agent", None)
     )
 
     editing_task = Task(
-        config=task_config['editing_task'],
-        agent=agent.agents["content_editor_agent"]  # Updated key name
+        config=task_config.get('editing_task', None),
+        agent=agent.agents.get("content_editor_agent", None)
     )
 
     quality_review_task = Task(
-        config=task_config['quality_review_task'],
-        agent=agent.agents["quality_reviewer_agent"],  # Updated key name
-        output_pydantic=ContentOutput
+        config=task_config.get('quality_review_task', None),
+        agent=agent.agents.get("quality_reviewer_agent", None),
+        # output_pydantic=ContentOutput
     )
+    # Debugging output_pydantic assignment
+    print("Debugging quality_review_task output_pydantic:", quality_review_task.output_pydantic)
 
     return [research_specialist_task, writing_task, editing_task, quality_review_task]
 
 if __name__ == "__main__":
-    # Debugging: Print raw task configuration loaded from YAML
+    # Debugging: Kiểm tra task_config đã load đúng chưa
     print("\nDebugging: Loaded task configuration (raw):")
     print(task_config)
+
+    # Tạo danh sách task và debug từng task
+    tasks = create_tasks(task_config)
+    print("\nDebugging: Created tasks with output_pydantic:")
+    for task in tasks:
+        task_name = task.config.get('name', 'Unnamed Task') if task.config else "Config is None"
+        output_type = task.output_pydantic if hasattr(task, 'output_pydantic') else "No output_pydantic"
+        print(f"Task: {task_name}, Output Type: {output_type}")
