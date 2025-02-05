@@ -3,7 +3,7 @@ import requests
 import os
 
 # 🔥 Ngrok URL của Backend (CẬP NHẬT nếu restart Ngrok)
-NGROK_URL = "https://6619-2001-ee1-db09-8120-5433-3898-237-ef2e.ngrok-free.app"
+NGROK_URL = "https://c031-2001-ee0-4b72-4fd0-1960-4910-6584-c332.ngrok-free.app"
 
 # Load CSS
 def load_css(css_file):
@@ -31,7 +31,7 @@ def main_ui():
         if topic:
             with st.spinner("⏳ Đang tạo nội dung..."):
                 try:
-                    response = requests.post(f"{NGROK_URL}/generate", json={"topic": topic})
+                    response = requests.post(f"{NGROK_URL}/generate", json={"topic": topic}, verify=False)
                     if response.status_code == 200:
                         data = response.json()
                         st.markdown("<div class='output-header'>📜 Nội dung đã tạo:</div>", unsafe_allow_html=True)
